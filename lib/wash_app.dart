@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wash_icareer/core/routes/app_router.dart';
 import 'package:wash_icareer/core/routes/app_routes.dart';
+import 'package:wash_icareer/main.dart';
 
 class WashApp extends StatelessWidget {
   const WashApp({super.key});
@@ -8,10 +9,16 @@ class WashApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.registerScreen,
+      initialRoute: getInitialPage(),
       onGenerateRoute: AppRouter.onGenerateRoutes,
-
     );
+  }
+
+  getInitialPage() {
+    if (token != null) {
+      return AppRoutes.homeScreen;
+    } else {
+      return AppRoutes.registerScreen;
+    }
   }
 }
